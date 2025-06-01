@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.Abstraction", "DataAccess.SQL.Abstraction\DataAccess.SQL.Abstraction.csproj", "{BD4BA4F2-6EAC-408E-A335-57F3CD8E1148}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.PostgreSql", "DataAccess.SQL.PostgreSql\DataAccess.SQL.PostgreSql.csproj", "{599FF429-7CA1-4178-B2DE-99AE6342504A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.ManualTesting", "DataAccess.SQL.ManualTesting\DataAccess.SQL.ManualTesting.csproj", "{585BFD98-2431-4AAD-849E-89DB148880AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD4BA4F2-6EAC-408E-A335-57F3CD8E1148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD4BA4F2-6EAC-408E-A335-57F3CD8E1148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD4BA4F2-6EAC-408E-A335-57F3CD8E1148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD4BA4F2-6EAC-408E-A335-57F3CD8E1148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585BFD98-2431-4AAD-849E-89DB148880AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585BFD98-2431-4AAD-849E-89DB148880AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585BFD98-2431-4AAD-849E-89DB148880AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585BFD98-2431-4AAD-849E-89DB148880AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
