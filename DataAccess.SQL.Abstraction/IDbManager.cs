@@ -6,5 +6,5 @@ public interface IDbManager
 {
     Task<IAsyncDbContext> RunWithTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default);
 
-    Task<IDbContext> RunWithTransaction(IsolationLevel isolationLevel);
+    IDbContext RunWithTransaction(IsolationLevel isolationLevel);
 }

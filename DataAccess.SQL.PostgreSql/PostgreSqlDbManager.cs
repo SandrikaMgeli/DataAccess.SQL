@@ -3,19 +3,17 @@ using DataAccess.SQL.Abstraction;
 
 namespace DataAccess.SQL.PostgreSql;
 
-public class PostgreSqlDbManager : IDbManager
+public class PostgreSqlDbManager(PostgreSqlDbContext dbContext) : IDbManager
 {
-    private DbManagerState _dbManagerState =  DbManagerState.None;
-
-
-    public Task<IAsyncDbContext> RunWithTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
+    public async Task<IAsyncDbContext> RunWithTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
     {
-        _dbManagerState = DbManagerState.Transactional;
-        throw new NotImplementedException();
+        await dbContext.SetupTransactionAsync(isolationLevel, cancellationToken);
+        return dbContext;
     }
 
-    public Task<IDbContext> RunWithTransaction(IsolationLevel isolationLevel)
+    public IDbContext RunWithTransaction(IsolationLevel isolationLevel)
     {
-        throw new NotImplementedException();
+        dbContext.SetupTransaction(isolationLevel);
+        return dbContext;
     }
 }

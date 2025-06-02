@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <ProjectReference Include="..\DataAccess.SQL.PostgreSql\DataAccess.SQL.PostgreSql.csproj" />
     </ItemGroup>
 
 </Project>
