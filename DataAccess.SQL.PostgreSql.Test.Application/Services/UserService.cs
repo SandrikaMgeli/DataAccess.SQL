@@ -10,10 +10,10 @@ public class UserService(IUserRepository userRepository) : IUserService
     public async Task AddUsers(List<User> users, CancellationToken cancellationToken)
     {
         // if you are not using transaction, then you can use connection pool to run parallel queries like that
-        /* Parallel.ForEach implementation is designed in way that even if there were multiple exceptions happened
-         it only throws the first one. so even if all the inserts fails, it throws only single exception (The first one).
-         so it is better practise to handle that scenarios by hand. this is the reason why we have written try/catch block
-         in the body of ForEachAsync*/
+        /* The Parallel.ForEach implementation is designed in a way that even if multiple exceptions occur, 
+           it only throws the first one. So even if all iterations fail, it throws only a single exception 
+           (the first one). Therefore, it is better practice to handle such scenarios manually. This is the 
+           reason why we have written a try/catch block in the body of ForEach.*/
 
         ConcurrentBag<Exception> happenedExceptions = [];
 
