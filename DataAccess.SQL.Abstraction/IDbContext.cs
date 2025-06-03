@@ -13,4 +13,6 @@ public interface IDbContext : IDisposable
     T QueryFirst<T>(string sql, object @params);
 
     T? QueryFirstOrDefault<T>(string sql, object @params);
+
+    int Execute(string sql, object @params);
 }

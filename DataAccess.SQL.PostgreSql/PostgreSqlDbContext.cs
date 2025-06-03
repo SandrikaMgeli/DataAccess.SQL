@@ -107,6 +107,11 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
         return Connection.QueryFirstOrDefault<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
+    public int Execute(string sql, object @params)
+    {
+        return Connection.Execute(sql: sql,  transaction: Transaction, param: @params);
+    }
+
     public Task<T> QuerySingleAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
         return Connection.QuerySingleAsync<T>(sql: sql,  transaction: Transaction, param: @params);
@@ -130,5 +135,10 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
     public Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
         return Connection.QueryFirstOrDefaultAsync<T>(sql: sql,  transaction: Transaction, param: @params);
+    }
+
+    public Task<int> ExecuteAsync(string sql, object @params, CancellationToken cancellationToken)
+    {
+        return Connection.ExecuteAsync(sql: sql,  transaction: Transaction, param: @params);
     }
 }

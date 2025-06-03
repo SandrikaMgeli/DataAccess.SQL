@@ -13,4 +13,6 @@ public interface IAsyncDbContext : IAsyncDisposable
     Task<T> QueryFirstAsync<T>(string sql, object @params, CancellationToken cancellationToken);
 
     Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object @params, CancellationToken cancellationToken);
+
+    Task<int> ExecuteAsync(string sql, object @params, CancellationToken cancellationToken);
 }
