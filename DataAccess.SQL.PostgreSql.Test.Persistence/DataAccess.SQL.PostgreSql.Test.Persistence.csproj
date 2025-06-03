@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DataAccess.SQL.PostgreSql.Test.Application\DataAccess.SQL.PostgreSql.Test.Application.csproj" />
+      <ProjectReference Include="..\DataAccess.SQL.PostgreSql\DataAccess.SQL.PostgreSql.csproj" />
+    </ItemGroup>
+
+</Project>

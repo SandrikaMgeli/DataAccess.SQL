@@ -4,6 +4,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.Abstraction"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.PostgreSql", "DataAccess.SQL.PostgreSql\DataAccess.SQL.PostgreSql.csproj", "{599FF429-7CA1-4178-B2DE-99AE6342504A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.PostgreSql.Test", "DataAccess.SQL.PostgreSql.Test\DataAccess.SQL.PostgreSql.Test.csproj", "{ED846127-31E9-4391-9F9A-81B6214C53AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.PostgreSql.Test.Application", "DataAccess.SQL.PostgreSql.Test.Application\DataAccess.SQL.PostgreSql.Test.Application.csproj", "{DC6509FA-856A-4ADA-A9FA-C6DB62167AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.SQL.PostgreSql.Test.Persistence", "DataAccess.SQL.PostgreSql.Test.Persistence\DataAccess.SQL.PostgreSql.Test.Persistence.csproj", "{9CAE05E0-3D5A-4B9A-8993-78A3F856AC53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostgreSql", "PostgreSql", "{D76A37C5-C1D1-449D-B2FA-66D8334FB514}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +26,23 @@ Global
 		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{599FF429-7CA1-4178-B2DE-99AE6342504A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED846127-31E9-4391-9F9A-81B6214C53AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED846127-31E9-4391-9F9A-81B6214C53AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED846127-31E9-4391-9F9A-81B6214C53AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED846127-31E9-4391-9F9A-81B6214C53AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6509FA-856A-4ADA-A9FA-C6DB62167AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6509FA-856A-4ADA-A9FA-C6DB62167AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6509FA-856A-4ADA-A9FA-C6DB62167AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6509FA-856A-4ADA-A9FA-C6DB62167AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CAE05E0-3D5A-4B9A-8993-78A3F856AC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CAE05E0-3D5A-4B9A-8993-78A3F856AC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CAE05E0-3D5A-4B9A-8993-78A3F856AC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CAE05E0-3D5A-4B9A-8993-78A3F856AC53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{599FF429-7CA1-4178-B2DE-99AE6342504A} = {D76A37C5-C1D1-449D-B2FA-66D8334FB514}
+		{ED846127-31E9-4391-9F9A-81B6214C53AF} = {D76A37C5-C1D1-449D-B2FA-66D8334FB514}
+		{DC6509FA-856A-4ADA-A9FA-C6DB62167AF1} = {D76A37C5-C1D1-449D-B2FA-66D8334FB514}
+		{9CAE05E0-3D5A-4B9A-8993-78A3F856AC53} = {D76A37C5-C1D1-449D-B2FA-66D8334FB514}
 	EndGlobalSection
 EndGlobal
