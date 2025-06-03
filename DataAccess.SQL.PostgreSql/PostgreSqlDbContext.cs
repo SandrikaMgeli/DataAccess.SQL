@@ -1,4 +1,5 @@
 using System.Data;
+using Dapper;
 using DataAccess.SQL.Abstraction;
 using Microsoft.Extensions.Options;
 using Npgsql;
@@ -9,39 +10,40 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
 {
     private DbManagerState _state =  DbManagerState.None;
 
-    private NpgsqlConnection? Connection { get; set; }
+    private NpgsqlConnection? _connection;
 
-    private NpgsqlTransaction? Transaction { get; set; }
-
-    public static implicit operator NpgsqlConnection(PostgreSqlDbContext context)
-    {
-        return (context._state switch
+    private NpgsqlConnection Connection =>
+        _state switch
         {
-            DbManagerState.None => context.GetConnectionFromPool(),
-            DbManagerState.Transactional => context.Connection,
+            DbManagerState.None => GetConnectionFromPool(),
+            DbManagerState.Transactional => _connection!,
             _ => throw new InvalidCastException($"{nameof(PostgreSqlDbContext)} is in unknown state")
-        })!;
-    }
+        };
 
-    public static implicit operator NpgsqlTransaction?(PostgreSqlDbContext context)
-    {
-        return context.Transaction;
-    }
+    private NpgsqlTransaction? _transaction;
+
+    private NpgsqlTransaction? Transaction =>
+        _state switch
+        {
+            DbManagerState.None => null,
+            DbManagerState.Transactional => _transaction,
+            _ => throw new InvalidCastException($"{nameof(PostgreSqlDbContext)} is in unknown state")
+        };
 
     public async Task SetupTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
     {
         EnsureNotInTransactionalState();
         _state = DbManagerState.Transactional;
-        Connection = GetConnectionFromPool();
-        Transaction = await Connection.BeginTransactionAsync(isolationLevel, cancellationToken);
+        _connection = GetConnectionFromPool();
+        _transaction = await Connection.BeginTransactionAsync(isolationLevel, cancellationToken);
     }
 
     public void SetupTransaction(IsolationLevel isolationLevel)
     {
         EnsureNotInTransactionalState();
         _state = DbManagerState.Transactional;
-        Connection = GetConnectionFromPool();
-        Transaction = Connection.BeginTransaction(isolationLevel);
+        _connection = GetConnectionFromPool();
+        _transaction = Connection.BeginTransaction(isolationLevel);
     }
 
     private void EnsureNotInTransactionalState()
@@ -61,22 +63,72 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
 
     public void Dispose()
     {
-        if (Connection != null) Connection.Dispose();
-        if (Transaction != null) Transaction.Dispose();
+        if (_connection != null) _connection.Dispose();
+        if (_transaction != null) _transaction.Dispose();
         Reset();
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (Connection != null) await Connection.DisposeAsync();
-        if (Transaction != null) await Transaction.DisposeAsync();
+        if (_connection != null) await _connection.DisposeAsync();
+        if (_transaction != null) await _transaction.DisposeAsync();
         Reset();
     }
 
     private void Reset()
     {
-        Connection = null;
-        Transaction = null;
+        _connection = null;
+        _transaction = null;
         _state = DbManagerState.None;
+    }
+
+    public T QuerySingle<T>(string sql, IDbTransaction? transaction, object @params)
+    {
+        return Connection.QuerySingle<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public T? QuerySingleOrDefault<T>(string sql, IDbTransaction? transaction, object @params)
+    {
+        return Connection.QuerySingleOrDefault<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public IEnumerable<T> Query<T>(string sql, IDbTransaction? transaction, object @params)
+    {
+        return Connection.Query<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public T QueryFirst<T>(string sql, IDbTransaction? transaction, object @params)
+    {
+        return Connection.QueryFirst<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public T? QueryFirstOrDefault<T>(string sql, IDbTransaction? transaction, object @params)
+    {
+        return Connection.QueryFirstOrDefault<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public Task<T> QuerySingleAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    {
+        return Connection.QuerySingleAsync<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public Task<T?> QuerySingleOrDefaultAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    {
+        return Connection.QuerySingleOrDefaultAsync<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public Task<IEnumerable<T>> QueryAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    {
+        return Connection.QueryAsync<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public Task<T> QueryFirstAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    {
+        return Connection.QueryFirstAsync<T>(sql: sql,  transaction: transaction, param: @params);
+    }
+
+    public Task<T?> QueryFirstOrDefaultAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    {
+        return Connection.QueryFirstOrDefaultAsync<T>(sql: sql,  transaction: transaction, param: @params);
     }
 }
