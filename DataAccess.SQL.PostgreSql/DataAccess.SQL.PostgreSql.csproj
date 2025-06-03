@@ -4,17 +4,44 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <!-- NuGet Package Properties -->
+        <PackageId>SandrikaMgeli.DataAccess.SQL.PostgreSql</PackageId>
+        <Authors>SandrikaMgeli</Authors>
+        <Description>PostgreSQL implementation for DataAccess.SQL with Dapper integration. Provides complete PostgreSQL data access with connection management, transaction support, and dependency injection setup.</Description>
+        <PackageTags>sql;dataaccess;postgresql;dapper;transaction;async;npgsql</PackageTags>
+        <RepositoryUrl>https://github.com/SandrikaMgeli/DataAccess.SQL</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/SandrikaMgeli/DataAccess.SQL</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+        <!-- Automatic versioning -->
+        <MinVerTagPrefix>v</MinVerTagPrefix>
     </PropertyGroup>
 
+    <!-- MinVer for automatic versioning -->
     <ItemGroup>
-      <ProjectReference Include="..\DataAccess.SQL.Abstraction\DataAccess.SQL.Abstraction.csproj" />
+        <PackageReference Include="MinVer" Version="6.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <!-- Include README in package -->
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Dapper" Version="2.1.66" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
-      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
-      <PackageReference Include="Npgsql" Version="9.0.3" />
+        <ProjectReference Include="..\DataAccess.SQL.Abstraction\DataAccess.SQL.Abstraction.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.66" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.5" />
+        <PackageReference Include="Npgsql" Version="9.0.3" />
     </ItemGroup>
 
 </Project>

@@ -4,6 +4,33 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <!-- NuGet Package Properties -->
+        <PackageId>SandrikaMgeli.DataAccess.SQL.Abstraction</PackageId>
+        <Authors>SandrikaMgeli</Authors>
+        <Description>Abstraction layer for SQL data access with transaction support. Provides interfaces for database operations with synchronous and asynchronous support, transaction management, and disposal patterns.</Description>
+        <PackageTags>sql;dataaccess;abstraction;transaction;async;dapper;database</PackageTags>
+        <RepositoryUrl>https://github.com/SandrikaMgeli/DataAccess.SQL</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/SandrikaMgeli/DataAccess.SQL</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+        <!-- Automatic versioning -->
+        <MinVerTagPrefix>v</MinVerTagPrefix>
     </PropertyGroup>
+
+    <!-- MinVer for automatic versioning -->
+    <ItemGroup>
+        <PackageReference Include="MinVer" Version="6.0.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <!-- Include README in package -->
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
 </Project>
