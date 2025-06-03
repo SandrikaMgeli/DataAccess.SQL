@@ -1,1 +1,6 @@
 # DataAccess.SQL
+
+Examples of how to use this library is in Test projects.
+
+DON'T USE THIS LIBRARY. THIS LIBRARY IS CREATED FOR SUPER DUPER SPECIFIC USAGE THAT
+IS APPLICABLE IN MY PERSONAL PROJECTS. <3
