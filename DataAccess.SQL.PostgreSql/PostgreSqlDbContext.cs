@@ -82,53 +82,53 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
         _state = DbManagerState.None;
     }
 
-    public T QuerySingle<T>(string sql, IDbTransaction? transaction, object @params)
+    public T QuerySingle<T>(string sql, object @params)
     {
-        return Connection.QuerySingle<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QuerySingle<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public T? QuerySingleOrDefault<T>(string sql, IDbTransaction? transaction, object @params)
+    public T? QuerySingleOrDefault<T>(string sql, object @params)
     {
-        return Connection.QuerySingleOrDefault<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QuerySingleOrDefault<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public IEnumerable<T> Query<T>(string sql, IDbTransaction? transaction, object @params)
+    public IEnumerable<T> Query<T>(string sql, object @params)
     {
-        return Connection.Query<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.Query<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public T QueryFirst<T>(string sql, IDbTransaction? transaction, object @params)
+    public T QueryFirst<T>(string sql, object @params)
     {
-        return Connection.QueryFirst<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QueryFirst<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public T? QueryFirstOrDefault<T>(string sql, IDbTransaction? transaction, object @params)
+    public T? QueryFirstOrDefault<T>(string sql, object @params)
     {
-        return Connection.QueryFirstOrDefault<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QueryFirstOrDefault<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public Task<T> QuerySingleAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    public Task<T> QuerySingleAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
-        return Connection.QuerySingleAsync<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QuerySingleAsync<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public Task<T?> QuerySingleOrDefaultAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    public Task<T?> QuerySingleOrDefaultAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
-        return Connection.QuerySingleOrDefaultAsync<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QuerySingleOrDefaultAsync<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public Task<IEnumerable<T>> QueryAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    public Task<IEnumerable<T>> QueryAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
-        return Connection.QueryAsync<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QueryAsync<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public Task<T> QueryFirstAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    public Task<T> QueryFirstAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
-        return Connection.QueryFirstAsync<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QueryFirstAsync<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 
-    public Task<T?> QueryFirstOrDefaultAsync<T>(string sql, IDbTransaction? transaction, object @params, CancellationToken cancellationToken)
+    public Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object @params, CancellationToken cancellationToken)
     {
-        return Connection.QueryFirstOrDefaultAsync<T>(sql: sql,  transaction: transaction, param: @params);
+        return Connection.QueryFirstOrDefaultAsync<T>(sql: sql,  transaction: Transaction, param: @params);
     }
 }
