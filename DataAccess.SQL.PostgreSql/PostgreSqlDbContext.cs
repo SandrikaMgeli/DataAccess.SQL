@@ -9,9 +9,9 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
 {
     private DbManagerState _state =  DbManagerState.None;
 
-    public NpgsqlConnection? Connection { get; internal set; }
+    private NpgsqlConnection? Connection { get; set; }
 
-    public NpgsqlTransaction? Transaction { get; internal set; }
+    private NpgsqlTransaction? Transaction { get; set; }
 
     public static implicit operator NpgsqlConnection(PostgreSqlDbContext context)
     {
@@ -21,6 +21,11 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
             DbManagerState.Transactional => context.Connection,
             _ => throw new InvalidCastException($"{nameof(PostgreSqlDbContext)} is in unknown state")
         })!;
+    }
+
+    public static implicit operator NpgsqlTransaction?(PostgreSqlDbContext context)
+    {
+        return context.Transaction;
     }
 
     public async Task SetupTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
