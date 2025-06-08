@@ -1,7 +1,7 @@
-using DataAccess.SQL.PostgreSql.Test.Application.Models;
-using DataAccess.SQL.PostgreSql.Test.Application.Repositories.Abstractions;
+using DataAccess.SQL.Example.Application.Models;
+using DataAccess.SQL.Example.Application.Repositories.Abstractions;
 
-namespace DataAccess.SQL.PostgreSql.Test.Persistence.Repositories;
+namespace DataAccess.SQL.PostgreSql.Example.Persistence.Repositories;
 
 public class UserRepository(PostgreSqlDbContext context) : IUserRepository
 {

@@ -1,9 +1,9 @@
 using System.Collections.Concurrent;
-using DataAccess.SQL.PostgreSql.Test.Application.Models;
-using DataAccess.SQL.PostgreSql.Test.Application.Repositories.Abstractions;
-using DataAccess.SQL.PostgreSql.Test.Application.Services.Abstractions;
+using DataAccess.SQL.Example.Application.Models;
+using DataAccess.SQL.Example.Application.Repositories.Abstractions;
+using DataAccess.SQL.Example.Application.Services.Abstractions;
 
-namespace DataAccess.SQL.PostgreSql.Test.Application.Services;
+namespace DataAccess.SQL.Example.Application.Services;
 
 public class UserService(IUserRepository userRepository) : IUserService
 {

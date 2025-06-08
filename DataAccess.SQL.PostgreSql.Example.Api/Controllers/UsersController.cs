@@ -1,8 +1,8 @@
-using DataAccess.SQL.PostgreSql.Test.Application.Models;
-using DataAccess.SQL.PostgreSql.Test.Application.Services.Abstractions;
+using DataAccess.SQL.Example.Application.Models;
+using DataAccess.SQL.Example.Application.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DataAccess.SQL.PostgreSql.Test.Controllers;
+namespace DataAccess.SQL.PostgreSql.Example.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

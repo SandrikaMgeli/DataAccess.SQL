@@ -1,4 +1,4 @@
-namespace DataAccess.SQL.PostgreSql.Test.Application.Models;
+namespace DataAccess.SQL.Example.Application.Models;
 
 public class User
 {

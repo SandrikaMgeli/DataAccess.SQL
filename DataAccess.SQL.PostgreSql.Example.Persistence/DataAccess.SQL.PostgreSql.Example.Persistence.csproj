@@ -8,10 +8,11 @@
         <!-- Explicitly disable package generation -->
         <IsPackable>false</IsPackable>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <RootNamespace>DataAccess.SQL.PostgreSql.Example.Persistence</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataAccess.SQL.PostgreSql.Test.Application\DataAccess.SQL.PostgreSql.Test.Application.csproj" />
+      <ProjectReference Include="..\DataAccess.SQL.Example.Application\DataAccess.SQL.Example.Application.csproj" />
       <ProjectReference Include="..\DataAccess.SQL.PostgreSql\DataAccess.SQL.PostgreSql.csproj" />
     </ItemGroup>
 

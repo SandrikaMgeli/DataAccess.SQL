@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataAccess.SQL.PostgreSql.Test.Persistence\DataAccess.SQL.PostgreSql.Test.Persistence.csproj" />
+      <ProjectReference Include="..\DataAccess.SQL.PostgreSql.Example.Persistence\DataAccess.SQL.PostgreSql.Example.Persistence.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,9 +1,8 @@
+using DataAccess.SQL.Example.Application.Repositories.Abstractions;
+using DataAccess.SQL.Example.Application.Services;
+using DataAccess.SQL.Example.Application.Services.Abstractions;
 using DataAccess.SQL.PostgreSql;
-using DataAccess.SQL.PostgreSql.Test.Application.Repositories.Abstractions;
-using DataAccess.SQL.PostgreSql.Test.Application.Services;
-using DataAccess.SQL.PostgreSql.Test.Application.Services.Abstractions;
-using DataAccess.SQL.PostgreSql.Test.Persistence.Repositories;
-using Npgsql;
+using DataAccess.SQL.PostgreSql.Example.Persistence.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
