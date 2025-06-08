@@ -3,7 +3,6 @@ using DataAccess.SQL.Example.Application.Services;
 using DataAccess.SQL.Example.Application.Services.Abstractions;
 using DataAccess.SQL.PostgreSql;
 using DataAccess.SQL.PostgreSql.Example.Persistence.Repositories;
-using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,5 +23,6 @@ app.UseSwaggerUI(options =>
 });
 
 app.MapControllers();
+app.SetupPostgreSql();
 
 app.Run();
