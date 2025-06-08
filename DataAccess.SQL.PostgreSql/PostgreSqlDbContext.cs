@@ -6,7 +6,7 @@ using Npgsql;
 
 namespace DataAccess.SQL.PostgreSql;
 
-public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connectionStringBuilder) : IDbContext, IAsyncDbContext
+public class PostgreSqlDbContext(DbOptions dbOptions) : IDbContext, IAsyncDbContext
 {
     private DbManagerState _state =  DbManagerState.None;
 
@@ -40,7 +40,7 @@ public class PostgreSqlDbContext(IOptions<NpgsqlConnectionStringBuilder> connect
 
     private NpgsqlConnection GetConnectionFromPool()
     {
-        NpgsqlConnection connection = new NpgsqlConnection(connectionStringBuilder.Value.ConnectionString);
+        NpgsqlConnection connection = new NpgsqlConnection(dbOptions.ConnectionString);
         connection.Open();
         return connection;
     }

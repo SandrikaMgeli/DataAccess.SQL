@@ -6,14 +6,17 @@ namespace DataAccess.SQL.PostgreSql;
 
 public static class Extensions
 {
-    public static IServiceCollection AddPostgreSql(this IServiceCollection services, string configurationToBind)
+    public static IServiceCollection AddPostgreSql(this IServiceCollection services, string connectionString)
     {
         services.AddScoped<PostgreSqlDbContext>();
 
         services.AddScoped<IDbManager, PostgreSqlDbManager>();
 
-        services.AddOptions<NpgsqlConnectionStringBuilder>()
-            .BindConfiguration(configurationToBind);
+        services.AddSingleton<DbOptions>(
+            new DbOptions()
+            {
+                ConnectionString = connectionString,
+            });
 
         return services;
     }
