@@ -1,7 +1,6 @@
 using System.Data;
 using Dapper;
 using DataAccess.SQL.Abstraction;
-using Microsoft.Extensions.Options;
 using Npgsql;
 
 namespace DataAccess.SQL.PostgreSql;
@@ -66,62 +65,62 @@ public class PostgreSqlDbContext(DbOptions dbOptions) : IDbContext, IAsyncDbCont
         _state = DbManagerState.None;
     }
 
-    public T QuerySingle<T>(string sql, object @params)
+    public T QuerySingle<T>(string sql, object? @params)
     {
         return Run(conn => conn.QuerySingle<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public T? QuerySingleOrDefault<T>(string sql, object @params)
+    public T? QuerySingleOrDefault<T>(string sql, object? @params)
     {
         return Run(conn => conn.QuerySingleOrDefault<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public IEnumerable<T> Query<T>(string sql, object @params)
+    public IEnumerable<T> Query<T>(string sql, object? @params)
     {
         return Run(conn => conn.Query<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public T QueryFirst<T>(string sql, object @params)
+    public T QueryFirst<T>(string sql, object? @params)
     {
         return Run(conn => conn.QueryFirst<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public T? QueryFirstOrDefault<T>(string sql, object @params)
+    public T? QueryFirstOrDefault<T>(string sql, object? @params)
     {
         return Run(conn => conn.QueryFirstOrDefault<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public int Execute(string sql, object @params)
+    public int Execute(string sql, object? @params)
     {
         return Run(conn => conn.Execute(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<T> QuerySingleAsync<T>(string sql, object @params, CancellationToken cancellationToken)
+    public async Task<T> QuerySingleAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
     {
         return await RunAsync(conn => conn.QuerySingleAsync<T>(sql: sql, transaction: _transaction, param: @params));
     }
 
-    public async Task<T?> QuerySingleOrDefaultAsync<T>(string sql, object @params, CancellationToken cancellationToken)
+    public async Task<T?> QuerySingleOrDefaultAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
     {
         return await RunAsync(conn => conn.QuerySingleOrDefaultAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object @params, CancellationToken cancellationToken)
+    public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
     {
         return await RunAsync(conn => conn.QueryAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<T> QueryFirstAsync<T>(string sql, object @params, CancellationToken cancellationToken)
+    public async Task<T> QueryFirstAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
     {
         return await RunAsync(conn => conn.QueryFirstAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object @params, CancellationToken cancellationToken)
+    public async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
     {
         return await RunAsync(conn => conn.QueryFirstOrDefaultAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<int> ExecuteAsync(string sql, object @params, CancellationToken cancellationToken)
+    public async Task<int> ExecuteAsync(string sql, object? @params, CancellationToken cancellationToken)
     {
         return await RunAsync(conn => conn.ExecuteAsync(sql: sql,  transaction: _transaction, param: @params));
     }
