@@ -20,7 +20,7 @@ public static class Extensions
     ];
     public static IServiceCollection AddPostgreSql(this IServiceCollection services, string connectionString, Action<DbOptions>? dbOptionsAction = null)
     {
-        services.AddScoped<PostgreSqlDbContext>();
+        services.AddScoped<DbContext, PostgreSqlDbContext>();
 
         services.AddScoped<IDbManager, PostgreSqlDbManager>();
 
@@ -35,7 +35,7 @@ public static class Extensions
     {
         using IServiceScope serviceScope = host.Services.CreateScope();
         DbOptions dbOptions = serviceScope.ServiceProvider.GetRequiredService<DbOptions>();
-        IDbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<PostgreSqlDbContext>();
+        DbContext dbContext = serviceScope.ServiceProvider.GetRequiredService<DbContext>();
         ILogger<IDbManager> logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<IDbManager>>();
         EnsureDatabaseExists(dbOptions.ConnectionString, logger);
 
@@ -47,7 +47,7 @@ public static class Extensions
         return host;
     }
 
-    private static void ProcessMigration(string migrationFilePath, string connectionString, IDbContext dbContext)
+    private static void ProcessMigration(string migrationFilePath, string connectionString, DbContext dbContext)
     {
         string migrationName = Path.GetFileNameWithoutExtension(migrationFilePath);
         PostgresDistributedLock migrationDistributedLock = new(new PostgresAdvisoryLockKey(migrationName, allowHashing: true), connectionString);
@@ -57,7 +57,7 @@ public static class Extensions
         }
     }
 
-    private static void ProcessMigration(string migrationFilePath, IDbContext dbContext, string migrationName)
+    private static void ProcessMigration(string migrationFilePath, DbContext dbContext, string migrationName)
     {
         bool isMigrationApplied = dbContext.QuerySingleOrDefault<bool>("SELECT TRUE FROM applied_migrations WHERE name = @name", new { name = migrationName });
         if (isMigrationApplied)

@@ -1,9 +1,10 @@
+using DataAccess.SQL.Abstraction;
 using DataAccess.SQL.Example.Application.Models;
 using DataAccess.SQL.Example.Application.Repositories.Abstractions;
 
 namespace DataAccess.SQL.PostgreSql.Example.Persistence.Repositories;
 
-public class UserRepository(PostgreSqlDbContext context) : IUserRepository
+public class UserRepository(DbContext context) : IUserRepository
 {
     private const string AddUserSql = @"INSERT INTO users(name,  last_name, age) VALUES (@Name, @LastName, @Age)";
 

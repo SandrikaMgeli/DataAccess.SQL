@@ -5,7 +5,7 @@ using Npgsql;
 
 namespace DataAccess.SQL.PostgreSql;
 
-public class PostgreSqlDbContext(DbOptions dbOptions) : IDbContext, IAsyncDbContext
+public class PostgreSqlDbContext(DbOptions dbOptions) : DbContext
 {
     private DbManagerState _state =  DbManagerState.None;
 
@@ -44,14 +44,14 @@ public class PostgreSqlDbContext(DbOptions dbOptions) : IDbContext, IAsyncDbCont
         return connection;
     }
 
-    public void Dispose()
+    public sealed override void Dispose()
     {
         if (_connection != null) _connection.Dispose();
         if (_transaction != null) _transaction.Dispose();
         Reset();
     }
 
-    public async ValueTask DisposeAsync()
+    public sealed override async ValueTask DisposeAsync()
     {
         if (_connection != null) await _connection.DisposeAsync();
         if (_transaction != null) await _transaction.DisposeAsync();
@@ -65,62 +65,62 @@ public class PostgreSqlDbContext(DbOptions dbOptions) : IDbContext, IAsyncDbCont
         _state = DbManagerState.None;
     }
 
-    public T QuerySingle<T>(string sql, object? @params)
+    public sealed override T QuerySingle<T>(string sql, object? @params = null)
     {
         return Run(conn => conn.QuerySingle<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public T? QuerySingleOrDefault<T>(string sql, object? @params)
+    public override T? QuerySingleOrDefault<T>(string sql, object? @params = null) where T : default
     {
         return Run(conn => conn.QuerySingleOrDefault<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public IEnumerable<T> Query<T>(string sql, object? @params)
+    public sealed override IEnumerable<T> Query<T>(string sql, object? @params = null)
     {
         return Run(conn => conn.Query<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public T QueryFirst<T>(string sql, object? @params)
+    public sealed override T QueryFirst<T>(string sql, object? @params = null)
     {
         return Run(conn => conn.QueryFirst<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public T? QueryFirstOrDefault<T>(string sql, object? @params)
+    public sealed override T? QueryFirstOrDefault<T>(string sql, object? @params = null) where T : default
     {
         return Run(conn => conn.QueryFirstOrDefault<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public int Execute(string sql, object? @params)
+    public sealed override int Execute(string sql, object? @params = null)
     {
         return Run(conn => conn.Execute(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<T> QuerySingleAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
+    public sealed override async Task<T> QuerySingleAsync<T>(string sql, object? @params = null, CancellationToken cancellationToken = default)
     {
         return await RunAsync(conn => conn.QuerySingleAsync<T>(sql: sql, transaction: _transaction, param: @params));
     }
 
-    public async Task<T?> QuerySingleOrDefaultAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
+    public sealed override async Task<T?> QuerySingleOrDefaultAsync<T>(string sql, object? @params = null, CancellationToken cancellationToken = default) where T : default
     {
         return await RunAsync(conn => conn.QuerySingleOrDefaultAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
+    public sealed override async Task<IEnumerable<T>> QueryAsync<T>(string sql, object? @params = null, CancellationToken cancellationToken = default)
     {
         return await RunAsync(conn => conn.QueryAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<T> QueryFirstAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
+    public sealed override async Task<T> QueryFirstAsync<T>(string sql, object? @params = null, CancellationToken cancellationToken = default)
     {
         return await RunAsync(conn => conn.QueryFirstAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? @params, CancellationToken cancellationToken)
+    public sealed override async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? @params = null, CancellationToken cancellationToken = default) where T : default
     {
         return await RunAsync(conn => conn.QueryFirstOrDefaultAsync<T>(sql: sql,  transaction: _transaction, param: @params));
     }
 
-    public async Task<int> ExecuteAsync(string sql, object? @params, CancellationToken cancellationToken)
+    public sealed override async Task<int> ExecuteAsync(string sql, object? @params = null, CancellationToken cancellationToken = default)
     {
         return await RunAsync(conn => conn.ExecuteAsync(sql: sql,  transaction: _transaction, param: @params));
     }
