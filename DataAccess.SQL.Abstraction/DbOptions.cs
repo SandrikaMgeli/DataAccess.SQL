@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DataAccess.SQL.Abstraction;
 
@@ -18,10 +19,13 @@ public class DbOptions
     public List<string> MigrationFilePaths { get; private set; }
     public string ConnectionString { get; private set; }
 
-    public DbOptions(string connectionString)
+    public IServiceCollection Services { get; private set; }
+
+    public DbOptions(string connectionString, IServiceCollection serviceCollection)
     {
         ConnectionString = connectionString;
         MigrationFilePaths = GetMigrationFiles().ToList();
+        Services = serviceCollection;
     }
 
     private IEnumerable<string> GetMigrationFiles()

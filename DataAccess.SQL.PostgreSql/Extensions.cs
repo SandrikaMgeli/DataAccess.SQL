@@ -24,7 +24,7 @@ public static class Extensions
 
         services.AddScoped<IDbManager, PostgreSqlDbManager>();
 
-        DbOptions dbOptions = new DbOptions(connectionString);
+        DbOptions dbOptions = new DbOptions(connectionString, services);
         dbOptionsAction?.Invoke(dbOptions);
         services.AddSingleton<DbOptions>(dbOptions);
 
