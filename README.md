@@ -2,7 +2,7 @@
 
 A lightweight, high-performance SQL data access library for .NET 9 with PostgreSQL support, featuring connection pooling, transaction management, and parallel query execution capabilities.
 
-## 🚀 Features
+## Features
 
 - **Connection Pooling**: Automatic connection pool management for optimal performance
 - **Parallel Query Execution**: Execute multiple queries concurrently when not in transaction mode
@@ -12,7 +12,7 @@ A lightweight, high-performance SQL data access library for .NET 9 with PostgreS
 - **Dependency Injection**: First-class DI support
 - **Async/Await**: Full async support throughout the library
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Install the abstraction package
@@ -25,7 +25,7 @@ IDbManager is added as Scoped.
 IDbContext is added as Scoped.
 DbOptions is added as Singleton.
 
-## 🔧 Configuration
+## Configuration
 
 ### Dependency Injection Setup
 
@@ -61,7 +61,7 @@ app.Run();
 }
 ```
 
-## 🏗️ Architecture & Internal Workings
+## Architecture & Internal Workings
 
 ### Core Components
 
@@ -102,7 +102,7 @@ private async Task<T> RunAsync<T>(Func<NpgsqlConnection, Task<T>> target)
 }
 ```
 
-## 📝 Repository Implementation
+## Repository Implementation
 
 ### 1. Define Your Models
 
@@ -277,7 +277,7 @@ public class BulkOperationService(IUserRepository userRepository, IOrderReposito
 }
 ```
 
-## 🔒 Transaction Management
+## Transaction Management
 
 ### Using Transactions with IDbManager
 
@@ -351,7 +351,7 @@ await using var context3 = await dbManager.RunWithTransactionAsync(IsolationLeve
 await using var context4 = await dbManager.RunWithTransactionAsync(IsolationLevel.Serializable);
 ```
 
-## 🗄️ Database Migrations
+## Database Migrations
 
 ### Migration File Naming Convention
 
@@ -390,7 +390,7 @@ CREATE INDEX idx_users_created_at ON users(created_at);
 - **Order Enforcement**: Migrations run in numerical order
 - **Idempotent**: Each migration runs only once, tracked in `applied_migrations` table
 
-## 🎯 Controller Examples
+## Controller Examples
 
 ### Basic CRUD Controller
 
@@ -444,7 +444,7 @@ public class UsersController(IUserService userService) : ControllerBase
 }
 ```
 
-## 🔍 Available Query Methods
+## Available Query Methods
 
 ### Synchronous Methods
 ```csharp
@@ -476,7 +476,7 @@ Task<IEnumerable<T>> QueryAsync<T>(string sql, object? params = null, Cancellati
 Task<int> ExecuteAsync(string sql, object? params = null, CancellationToken cancellationToken = default);
 ```
 
-## ⚠️ Important Notes
+## Important Notes
 
 ### Performance Considerations
 
@@ -503,7 +503,7 @@ Task<int> ExecuteAsync(string sql, object? params = null, CancellationToken canc
 - **Connection Pooling**: Thread-safe connection pool management
 - **Transactions**: Not thread-safe - use single-threaded execution within transaction scope
 
-## 🤝 Contributing
+## Contributing
 
 This library is experimental and designed for learning purposes. While functional, it's recommended to use established ORMs like Entity Framework Core or Dapper directly for production applications.
 It's stable version DataAccess.SQL.Events library is used in GameHub project;
