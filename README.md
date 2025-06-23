@@ -74,7 +74,7 @@ app.Run();
 
 The library operates in two modes:
 
-- **None**: Uses connection pooling, allows  execution
+- **None**: Uses connection pooling, allows parallel execution
 - **Transactional**: Uses single connection with transaction, sequential execution
 
 ```csharp
